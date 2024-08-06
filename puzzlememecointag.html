@@ -1,0 +1,406 @@
+<html>
+  <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GoldCODED</title>
+<style>
+  body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 20px;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .logo {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+  }
+
+  .logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffd700;
+  }
+
+  logo-text sup {
+      font-size: 12px;
+      vertical-align: super;
+      margin-left: 2px;
+  }
+
+  .puzzle-board {
+    display: grid;
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: repeat(3, 80px);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .grid-item {
+    width: 80px;
+    height: 80px;
+    background-color: #ffd700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #000000;
+  }
+
+  .grid-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  }
+
+  .grid-item.empty {
+    background-color: #333;
+  }
+
+  .button-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  #shuffle-btn {
+    background-color: #4CAF50;
+  }
+
+  #shuffle-btn:hover:not(:disabled) {
+    background-color: #45a049;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+  }
+
+  #shuffle-btn:disabled {
+    background-color: #808080;
+    cursor: not-allowed;
+  }
+
+  #back-btn {
+    background-color: #722f37;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  #back-btn:hover {
+    background-color: #8c3a45;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(114, 47, 55, 0.5);
+  }
+
+  #play-again-btn {
+    background-color: #007bff;
+  }
+
+  #play-again-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+  }
+
+  #start-btn {
+    background-color: #ff9800;
+  }
+
+  #start-btn:hover {
+    background-color: #f57c00;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+  }
+
+  .instruction {
+    font-size: 18px;
+    color: #ffd700;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    z-index: 1000;
+    width: 320px;
+    text-align: center;
+  }
+
+  .popup h2 {
+    color: #ffd700;
+    margin-bottom: 20px;
+  }
+
+  #claim-btn, #add-time-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+
+  #claim-btn:hover, #add-time-btn:hover {
+    background-color: #45a049;
+  }
+
+  #timer {
+    font-size: 18px;
+    color: #ffd700;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .timer-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+
+  #add-time-btn {
+    background-color: #ffa500;
+  }
+
+  #add-time-btn:hover {
+    background-color: #ff8c00;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+  }
+
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo-container">
+      <img <img src="gclogo.png" alt="gclogo" class="logo" style="width:40px;height:40px;">
+      <span class="logo-text">GoldCODED<sup>™</sup></span>
+    </div>
+  </header>
+  <br>
+  <p class="instruction">Arrange letters to form the words<br>
+    <b>'MEME COIN TAG'</b> on rows only.</p>
+  <div class="puzzle-board" id="puzzle-board"></div>
+  <div class="button-container">
+    <button id="shuffle-btn" class="btn" disabled>Shuffle</button>
+    <a href="index.html" id="back-btn" class="btn">Back</a>
+    <button id="start-btn" class="btn">Start</button>
+  </div>
+  <div id="timer" style="display: none;">
+    <svg class="timer-icon" viewBox="0 0 24 24" fill="#ffd700">
+      <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+    </svg>
+    <span id="time-value">1:00</span>
+  </div>
+
+  <div class="popup" id="win-popup">
+    <h2>Good Job! You've Won 50 gold coins.</h2>
+    <button class="update-button" onclick="updateScore(50)">Claim</button>
+  </div>
+
+  <div class="popup" id="time-up-popup">
+    <h2>Time is Up!</h2>
+    <button id="add-time-btn">+20 seconds</button>
+    <button id="play-again-btn">Play Again</button>
+  </div>
+
+
+  <script>
+    const letters = ['N', 'G', 'E', 'E', 'M', 'O', 'A', 'C', 'M', 'I', 'T', ''];
+    const board = document.getElementById('puzzle-board');
+    const shuffleBtn = document.getElementById('shuffle-btn');
+    const startBtn = document.getElementById('start-btn');
+    const playAgainBtn = document.getElementById('play-again-btn');
+    const winPopup = document.getElementById('win-popup');
+    const timeUpPopup = document.getElementById('time-up-popup');
+    const claimBtn = document.getElementById('claim-btn');
+    const addTimeBtn = document.getElementById('add-time-btn');
+    const timerDisplay = document.getElementById('timer');
+    const timeValue = document.getElementById('time-value');
+   
+    let isLocked = false;
+    let timerInterval;
+    let remainingTime;
+
+    function createBoard() {
+      board.innerHTML = '';
+      letters.forEach((letter, index) => {
+        const gridItem = document.createElement('div');
+        gridItem.classList.add('grid-item');
+        if (letter === '') {
+          gridItem.classList.add('empty');
+        } else {
+          gridItem.textContent = letter;
+        }
+        gridItem.addEventListener('click', () => moveTile(index));
+        board.appendChild(gridItem);
+      });
+    }
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function moveTile(index) {
+      if (isLocked) return;
+      const emptyIndex = letters.indexOf('');
+      if (isAdjacent(index, emptyIndex)) {
+        [letters[index], letters[emptyIndex]] = [letters[emptyIndex], letters[index]];
+        createBoard();
+        checkSolution();
+      }
+    }
+
+    function isAdjacent(index1, index2) {
+      const row1 = Math.floor(index1 / 4);
+      const col1 = index1 % 4;
+      const row2 = Math.floor(index2 / 4);
+      const col2 = index2 % 4;
+
+      return (Math.abs(row1 - row2) + Math.abs(col1 - col2) === 1);
+    }
+
+    function checkSolution() {
+      const solution = ['M', 'E', 'M', 'E', 'C', 'O', 'I', 'N', 'T', 'A', 'G', ''];
+      if (letters.join('') === solution.join('')) {
+        clearInterval(timerInterval);
+        winPopup.style.display = 'block';
+      }
+    }
+
+    function resetGame() {
+      isLocked = false;
+      shuffleArray(letters);
+      createEmptyBoard();
+      startBtn.style.display = 'inline-block';
+      timerDisplay.style.display = 'none';
+      clearInterval(timerInterval);
+      shuffleBtn.disabled = true;
+    }
+
+    function startGame() {
+      shuffleArray(letters);
+      createBoard();
+      startBtn.style.display = 'none';
+      timerDisplay.style.display = 'flex';
+      shuffleBtn.disabled = false;
+      startTimer(60);
+    }
+
+    function startTimer(duration) {
+      remainingTime = duration;
+      updateTimerDisplay();
+      timerInterval = setInterval(() => {
+        remainingTime--;
+        updateTimerDisplay();
+        if (remainingTime <= 0) {
+          clearInterval(timerInterval);
+          timeUpPopup.style.display = 'block';
+          isLocked = true;
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(remainingTime / 60);
+      const seconds = remainingTime % 60;
+      timeValue.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    function createEmptyBoard() {
+      board.innerHTML = '';
+      for (let i = 0; i < 12; i++) {
+        const gridItem = document.createElement('div');
+        gridItem.classList.add('grid-item', 'empty');
+        board.appendChild(gridItem);
+      }
+    }
+
+    shuffleBtn.addEventListener('click', () => {
+      if (!isLocked) {
+        shuffleArray(letters);
+        createBoard();
+      }
+    });
+
+    startBtn.addEventListener('click', startGame);
+
+    playAgainBtn.addEventListener('click', () => {
+      timeUpPopup.style.display = 'none';
+      resetGame();
+    });
+
+
+    addTimeBtn.addEventListener('click', () => {
+      remainingTime += 20;
+      updateTimerDisplay();
+      timeUpPopup.style.display = 'none';
+      isLocked = false;
+      clearInterval(timerInterval);
+      startTimer(remainingTime);
+    });
+
+    function updateScore(value) {
+        let currentScore = parseInt(localStorage.getItem('score')) || 0;
+        currentScore += value;
+        localStorage.setItem('score', currentScore);
+        window.location.href = 'index.html';
+    }
+
+    // Initially create an empty board
+    createEmptyBoard();
+
+    // Initially disable the shuffle button
+    shuffleBtn.disabled = true;
+
+  </script>
+</body>
+</html>

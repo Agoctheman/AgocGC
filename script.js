@@ -65,3 +65,31 @@ const {
   button_text_color,
   secondary_bg_color,
 } = Telegram.WebApp.themeParams;
+
+const tg = Telegram.WebApp;
+
+// Show the back button
+tg.BackButton.show();
+
+// Check if the button is visible
+tg.BackButton.isVisible;
+
+// Click Event
+const goBack = () => {
+  // Callback code
+};
+
+tg.BackButton.onClick(goBack);
+
+// Remove Click Event
+tg.BackButton.offClick(goBack);
+
+// Hide the back button
+tg.BackButton.hide();
+
+const tg = window.Telegram.WebApp;
+tg.ready();
+
+const tg = window.Telegram.WebApp;
+tg.isExpanded;
+tg.expand();

@@ -27,10 +27,10 @@ window.addEventListener('load', function() {
   const loadingText = document.getElementById('loading-text');
 
   const loadingSteps = [
-    { text: "Loading puzzles...", duration: 3000 },
-    { text: "Initiating scores...", duration: 1000 },
-    { text: "Assigning Gold...", duration: 3000 },
-    { text: "Complete.", duration: 1000 }
+    { text: "Loading puzzles...", duration: 300 },
+    { text: "Initiating scores...", duration: 300 },
+    { text: "Assigning Gold...", duration: 300 },
+    { text: "Complete.", duration: 500 }
   ];
 
   let currentStep = 0;
@@ -66,6 +66,16 @@ const {
   secondary_bg_color,
 } = Telegram.WebApp.themeParams;
 
+
 const tg = window.Telegram.WebApp;
 tg.isExpanded;
 tg.expand();
+
+  document.querySelectorAll('td').forEach(cell => {
+      cell.addEventListener('mouseover', () => {
+          cell.style.transform = 'scale(1.05)';
+      });
+      cell.addEventListener('mouseout', () => {
+          cell.style.transform = 'scale(1)';
+      });
+  });

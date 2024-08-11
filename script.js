@@ -164,8 +164,6 @@ if (redeemClicked === 'true') {
 
 // Function to handle redeem button click
 function handleRedeemClick() {
-    // Update the score by a certain value when the button is clicked
-    updateScore(100);  // Example: increase score by 100
 
     // Set a flag in localStorage to indicate that the redeem button has been clicked
     localStorage.setItem('redeemClicked', 'true');
@@ -180,3 +178,35 @@ if (localStorage.getItem('score') === null) {
     localStorage.setItem('score', '0'); // Start with a fresh score of 0
 }
 
+// Function to update the score for the Welcome button
+function updateWelcomeScore(value) {
+    let currentScore = parseInt(localStorage.getItem('score')) || 0;
+    currentScore += value;
+    localStorage.setItem('score', currentScore);
+    window.location.href = 'index.html';
+}
+
+// Check if the Welcome button was already clicked and disable it if so
+const welcomeClicked = localStorage.getItem('welcomeClicked');
+const welcomeBtn = document.getElementById('welcome-btn');
+
+if (welcomeClicked === 'true') {
+    welcomeBtn.disabled = true;
+} else {
+    welcomeBtn.disabled = false;
+    welcomeBtn.classList.add('active');
+}
+
+// Function to handle Welcome button click
+function handleWelcomeClick() {
+    // Update the score by a certain value when the button is clicked
+    updateWelcomeScore(500);  // Example: increase score by 50
+
+    // Set a flag in localStorage to indicate that the Welcome button has been clicked
+    localStorage.setItem('welcomeClicked', 'true');
+    welcomeBtn.disabled = true; // Disable the button after it's clicked
+    welcomeBtn.classList.remove('active');
+}
+
+// Attach the click event to the Welcome button
+welcomeBtn.addEventListener('click', handleWelcomeClick);

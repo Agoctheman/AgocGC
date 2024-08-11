@@ -74,7 +74,7 @@ h1 sup {
 }
 
 .score-container {
-    font-size: 2em;
+    font-size: 20px;
     color: gold;
     font-weight: bold;
   align-items: center;
@@ -82,8 +82,8 @@ h1 sup {
 }
 
   .dot {
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
     background-color:gold;
     border-radius: 50%;
     display: inline-block;
@@ -200,4 +200,124 @@ h2 {
 }
 .menu-item a:hover {
   color: #ddd;
+}
+
+.referral-container {
+  margin-top: 30px;
+  text-align: center;
+}
+.code-bar {
+  display: inline-block;
+  width: 80%;
+  max-width: 500px;
+  padding: 10px;
+  border: 2px solid #007bff;
+  background-color: #f8f9fa;
+  font-size: 18px;
+  color: #333;
+  border-radius: 5px;
+  text-align: left;
+  box-sizing: border-box;
+}
+.generate-btn, .share-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.generate-btn:hover, .share-btn:hover {
+  background-color: #0056b3;
+}
+.share-btn {
+  margin-left: 10px;
+  cursor: not-allowed;
+  background-color: #d3d3d3;
+}
+
+.redeem-container {
+  text-align: center;
+  margin-top: 50px;
+}
+.redeem-text {
+  display: inline-block;
+  font-size: 18px;
+  color: white;
+}
+.redeem-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  display: inline-block; /* On the same line as the text */
+  margin-left: 10px;
+}
+.redeem-btn:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
+.redeem-btn:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.rounded-rectangle {
+  width: 360px;
+  height: 50px;
+  background-color: #121111;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rectangle-image {
+  width: 50px; /* Adjust the size of the image */
+  height: 50px;
+  margin-right: 10px;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-line {
+  margin: 0;
+  font-size: 16px; /* Adjust font size as needed */
+  color: white;
+}
+
+.rectangle-button {
+  background-color: #4CAF50; /* Button color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.rectangle-button:hover {
+  background-color: #45a049; /* Hover effect */
+}
+
+.info-rectangle {
+  width: 360px;
+  height: 600px;
+  background-color: #121111;
+  color: white;
+  border-radius: 15px;
+  padding: 0 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
 }

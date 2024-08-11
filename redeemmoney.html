@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <title>GoldCODED</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+    <style>
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .reward-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 360px;
+            height: 30px;
+            border-radius: 15px;
+            background-color: #121111;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+        .reward-box img {
+            width: 30px;
+            height: 30px;
+        }
+        .reward-box span {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 1.2em;
+            color: white;
+        }
+        .claim-button {
+            padding: 8px 16px;
+            font-size: 1em;
+            color: white;
+            background-color: #ff6347;
+            border: none;
+            border-radius: 5px;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .claim-button.active {
+            cursor: pointer;
+            opacity: 1;
+        }
+        </style>
+<body>
+    <header>
+        <img src="gclogo.png" alt="gclogo" class="logo" style="width:40px;height:40px;">
+        <h1>GoldCODED<sup>™</sup></h1>
+    </header>
+  <br>
+  <div class="score-container">
+    <span class="dot"></span><span id="score">0</span>
+  </div>
+    <main>
+        <h2>Redeem Coins</h2>
+
+        <div class="container">
+            <div class="reward-box">
+                <img src="coins.png" alt="Coin">
+                <span>5000 = GHS5</span>
+                <button class="claim-button" id="claim-5000" onclick="claimReward(5000, 'GHS5')" disabled>Claim</button>
+            </div>
+            <div class="reward-box">
+                <img src="coins.png" alt="Coin">
+                <span>10000 = GHS10</span>
+                <button class="claim-button" id="claim-10000" onclick="claimReward(10000, 'GHS10')" disabled>Claim</button>
+            </div>
+            <div class="reward-box">
+                <img src="coins.png" alt="Coin">
+                <span>50000 = GHS50</span>
+                <button class="claim-button" id="claim-50000" onclick="claimReward(50000, 'GHS50')" disabled>Claim</button>
+            </div>
+            <div class="reward-box">
+                <img src="coins.png" alt="Coin">
+                <span>100000 = GHS100</span>
+                <button class="claim-button" id="claim-100000" onclick="claimReward(100000, 'GHS100')" disabled>Claim</button>
+            </div>
+        </div>
+
+        <script>
+            function updateClaimButtons() {
+                const score = parseInt(localStorage.getItem('score')) || 0;
+
+                if (score >= 5000) enableButton('claim-5000');
+                if (score >= 10000) enableButton('claim-10000');
+                if (score >= 50000) enableButton('claim-50000');
+                if (score >= 100000) enableButton('claim-100000');
+            }
+
+            function enableButton(buttonId) {
+                const button = document.getElementById(buttonId);
+                button.classList.add('active');
+                button.disabled = false;
+                button.style.cursor = 'pointer';
+            }
+
+            function claimReward(amount, reward) {
+                const score = parseInt(localStorage.getItem('score')) || 0;
+
+                if (score >= amount) {
+                    const newScore = score - amount;
+                    localStorage.setItem('score', newScore);
+                    alert(`You have claimed ${reward}. Your new score is ${newScore}.`);
+                    window.location.href = 'https://t.me/+P283jzHM7YQ0YjU0';
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', updateClaimButtons);
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const scoreDisplay = document.getElementById('score');
+            const savedScore = localStorage.getItem('score') || 0;
+            scoreDisplay.textContent = savedScore;
+        });
+
+        function updateScore(value) {
+            let currentScore = parseInt(localStorage.getItem('score')) || 0;
+            currentScore += value;
+            localStorage.setItem('score', currentScore);
+            window.location.href = 'index.html';
+        }
+        
+    </script>
+<p>Note that redemptions may take up to 48hours due to verification processes.</p>
+         <div class="menu-bar">
+              <div class="menu-item">
+                  <a href="index.html">
+                      <img src="home.png" alt="Page 1">
+                      Home
+                  </a>
+              </div>
+             <div class="menu-item">
+                 <a href="tasks.html">
+                     <img src="tasks.png" alt="Page 3">
+                     Earn
+                 </a>
+             </div>
+              <div class="menu-item">
+                    <a href="redeem.html">
+                        <img src="coins.png" alt="Page 3">
+                        Redeem
+                    </a>
+                </div>
+              <div class="menu-item">
+                  <a href="about.html">
+                      <img src="info.png" alt="Page 3">
+                      About
+                  </a>
+              </div>
+</body>
+</html>

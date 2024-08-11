@@ -144,12 +144,7 @@ window.onload = function() {
   }
 };
 
-    // Check if the redeem button was already clicked and disabled
-    const redeemClicked = localStorage.getItem('redeemClicked');
-    if (redeemClicked === 'true') {
-        document.getElementById('redeem-btn').disabled = true;
-    }
-
+// Function to update the score
 function updateScore(value) {
     let currentScore = parseInt(localStorage.getItem('score')) || 0;
     currentScore += value;
@@ -157,10 +152,31 @@ function updateScore(value) {
     window.location.href = 'index.html';
 }
 
+// Check if the redeem button was already clicked and disable it if so
+const redeemClicked = localStorage.getItem('redeemClicked');
 const redeemBtn = document.getElementById('redeem-btn');
-redeemBtn.disabled = true;
 
-// Set a flag in localStorage to indicate that the redeem button has been clicked
-localStorage.setItem('redeemClicked', 'true');
+if (redeemClicked === 'true') {
+    redeemBtn.disabled = true;
+} else {
+    redeemBtn.disabled = false;
+}
 
+// Function to handle redeem button click
+function handleRedeemClick() {
+    // Update the score by a certain value when the button is clicked
+    updateScore(100);  // Example: increase score by 100
+
+    // Set a flag in localStorage to indicate that the redeem button has been clicked
+    localStorage.setItem('redeemClicked', 'true');
+    redeemBtn.disabled = true; // Disable the button after it's clicked
+}
+
+// Attach the click event to the redeem button
+redeemBtn.addEventListener('click', handleRedeemClick);
+
+// Reset the score for new users if it's not already set
+if (localStorage.getItem('score') === null) {
+    localStorage.setItem('score', '0'); // Start with a fresh score of 0
+}
 

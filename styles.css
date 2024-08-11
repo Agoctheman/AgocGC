@@ -103,6 +103,12 @@ h2 {
     text-align: center;
 }
 
+h3 {
+    font-size: 16px;
+    color: #FFD700;
+    text-align: center;
+}
+
 .dropdown-container {
   display: flex;
   flex-direction: column;
@@ -247,7 +253,7 @@ h2 {
   font-size: 18px;
   color: white;
 }
-.redeem-btn {
+.refer-btn {
   padding: 10px 20px;
   font-size: 16px;
   background-color: #007bff;
@@ -258,16 +264,16 @@ h2 {
   display: inline-block; /* On the same line as the text */
   margin-left: 10px;
 }
-.redeem-btn:disabled {
+.refer-btn:disabled {
   background-color: #d3d3d3;
   cursor: not-allowed;
 }
-.redeem-btn:hover:not(:disabled) {
+.refer-btn:hover:not(:disabled) {
   background-color: #0056b3;
 }
 
 .rounded-rectangle {
-  width: 360px;
+  width: 340px;
   height: 50px;
   background-color: #121111;
   border-radius: 15px;
@@ -312,7 +318,7 @@ h2 {
 }
 
 .info-rectangle {
-  width: 360px;
+  width: 300px;
   height: 600px;
   background-color: #121111;
   color: white;

@@ -1,7 +1,9 @@
 <html>
   <head>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
 <title>GoldCODED</title>
 <style>
   body {
@@ -245,7 +247,7 @@
 
   <div class="popup" id="time-up-popup">
     <h2>Time is Up!</h2>
-    <button id="add-time-btn">+20 seconds</button>
+     <button id="ad">Add 30 seconds</button>
     <button id="play-again-btn">Play Again</button>
   </div>
 
@@ -379,15 +381,7 @@
     });
 
 
-    addTimeBtn.addEventListener('click', () => {
-      remainingTime += 20;
-      updateTimerDisplay();
-      timeUpPopup.style.display = 'none';
-      isLocked = false;
-      clearInterval(timerInterval);
-      startTimer(remainingTime);
-    });
-
+    
     function updateScore(value) {
         let currentScore = parseInt(localStorage.getItem('score')) || 0;
         currentScore += value;
@@ -400,6 +394,27 @@
 
     // Initially disable the shuffle button
     shuffleBtn.disabled = true;
+
+    // insert your block id
+    const AdController = window.Adsgram.init({ blockId: "1794" });
+    const button = document.getElementById('ad');
+    button.addEventListener('click', () => {
+        AdController.show().then((result) => {
+            // user watch ad till the end
+            // your code to reward user
+            remainingTime += 30;
+              updateTimerDisplay();
+              timeUpPopup.style.display = 'none';
+              isLocked = false;
+              clearInterval(timerInterval);
+              startTimer(remainingTime);
+
+        }).catch((result) => {
+            // user skipped video or get error during playing ad
+            // do nothing or whatever you want
+            alert(JSON.stringify(result, null, 4));
+        })
+    })
 
   </script>
 </body>

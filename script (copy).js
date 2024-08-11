@@ -147,7 +147,7 @@ window.onload = function() {
     // Check if the redeem button was already clicked and disabled
     const redeemClicked = localStorage.getItem('redeemClicked');
     if (redeemClicked === 'true') {
-        document.getElementById('redeem-btn').disabled = true;
+        document.getElementById('refer-btn').disabled = true;
     }
 
 function updateScore(value) {
@@ -157,8 +157,8 @@ function updateScore(value) {
     window.location.href = 'index.html';
 }
 
-const redeemBtn = document.getElementById('redeem-btn');
-redeemBtn.disabled = true;
+const referBtn = document.getElementById('refer-btn');
+referBtn.disabled = true;
 
 // Set a flag in localStorage to indicate that the redeem button has been clicked
 localStorage.setItem('redeemClicked', 'true');

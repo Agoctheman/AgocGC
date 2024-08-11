@@ -253,7 +253,7 @@ h3 {
   font-size: 18px;
   color: white;
 }
-.refer-btn {
+.redeem-btn {
   padding: 10px 20px;
   font-size: 16px;
   background-color: #007bff;
@@ -264,11 +264,11 @@ h3 {
   display: inline-block; /* On the same line as the text */
   margin-left: 10px;
 }
-.refer-btn:disabled {
+.redeem-btn:disabled {
   background-color: #d3d3d3;
   cursor: not-allowed;
 }
-.refer-btn:hover:not(:disabled) {
+.redeem-btn:hover:not(:disabled) {
   background-color: #0056b3;
 }
 

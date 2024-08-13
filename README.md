@@ -13,4 +13,4 @@ Complete tasks to earn more coins.
 Invite your friends and get bonuses.
 
 🪙 Redeem
-Exchange coins for real cash.
+Exchange coins for in-app products and more.

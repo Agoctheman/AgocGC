@@ -210,3 +210,25 @@ function handleWelcomeClick() {
 
 // Attach the click event to the Welcome button
 welcomeBtn.addEventListener('click', handleWelcomeClick);
+
+// Initialize the button state when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    const checkButton = document.getElementById('checkButton');
+
+    // Check if the button has been clicked before by retrieving from localStorage
+    const buttonClicked = localStorage.getItem('checkButtonClicked');
+
+    if (buttonClicked) {
+        // If clicked before, disable the button
+        checkButton.disabled = true;
+    } else {
+        // If not clicked, enable the button and set up the click event
+        checkButton.disabled = false;
+        checkButton.addEventListener('click', function() {
+            updateScore(500);
+            checkButton.disabled = true;
+            // Store the button click state in localStorage to prevent further additions
+            localStorage.setItem('checkButtonClicked', 'true');
+        });
+    }
+});

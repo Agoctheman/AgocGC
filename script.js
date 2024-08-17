@@ -244,22 +244,3 @@ function handleCheckClick() {
 
 // Attach the click event to the Welcome button
 checkBtn.addEventListener('click', handleCheckClick);
-
-function isTelegramMobile() {
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-      // Check for Telegram on Android or iOS
-      const isTelegram = /Telegram/i.test(userAgent);
-      const isMobile = /Mobile|Android|iP(hone|od|ad)/i.test(userAgent);
-
-      // Return true only if it is both Telegram and a mobile device
-      return isTelegram && isMobile;
-    }
-
-    if (!isTelegramMobile()) {
-      // If not on Telegram Mobile, show a message or redirect
-      document.body.innerHTML = "<h1>This app can only be accessed on the Telegram mobile app.</h1>";
-    } else {
-      // Your mobile app content goes here
-      document.body.innerHTML = "<h1>Welcome to the Web App!</h1>";
-    }

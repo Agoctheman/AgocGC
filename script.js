@@ -244,3 +244,13 @@ function handleCheckClick() {
 
 // Attach the click event to the Welcome button
 checkBtn.addEventListener('click', handleCheckClick);
+
+function isMobileDevice() {
+      return /Mobi|Android/i.test(navigator.userAgent);
+    }
+
+    if (!isMobileDevice()) {
+      // Optionally, show an alert or message instead of redirecting
+      document.write("This app is only available on mobile devices.");
+      // window.location.href = "non-mobile.html"; // Uncomment to redirect
+    }
